@@ -1,0 +1,67 @@
+<lib-toastify-toast-container
+  [position]="'top-right'"
+  [transition]="'flip'"
+></lib-toastify-toast-container>
+<div class="flex justify-center items-start gap-5 p-10">
+  <p>
+    <mat-form-field appearance="fill" appTooltip="Enter the city ">
+      <mat-label>City</mat-label>
+      <input [(ngModel)]="selectedCity" matInput placeholder="Enter here" />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Enter city to know weather</mat-hint>
+    </mat-form-field>
+  </p>
+  <button
+    appTooltip="click here to get the detail of weather."
+    (click)="getCityWeather()"
+    class=""
+    mat-raised-button
+    color="primary"
+  >
+    Get
+  </button>
+</div>
+
+<div
+  *ngIf="watherData"
+  class="p-10 w-2/3 mx-auto border items-center justify-center border-gray-300 rounded-xl flex flex-col gap-3 shadow-lg"
+>
+  <img class="w-19 mx-auto" [src]="watherData.current.condition.icon" alt="" />
+  <h1
+    [appTooltip]="'This is city name you are looking for'"
+    appHighlight="yellow"
+    class="text-2xl font-semibold text-gray-700"
+  >
+    {{ watherData.location.name | uppercase }}, {{
+      watherData.location.region |uppercase
+    }}, {{ watherData.location.country  |uppercase}}
+  </h1>
+  <p>
+    TimeZone :
+    <span class="font-bold">{{ watherData.location.tz_id }}</span>
+  </p>
+  <p>
+    LocalTime :
+    <span class="font-bold">{{ watherData.location.localtime }}</span>
+  </p>
+  <p>
+    Lat: <span class="font-bold">{{ watherData.location.lat }}</span
+    >, Log: <span class="font-bold">{{ watherData.location.lon }}</span>
+  </p>
+  <h2>
+    Temperature:
+    <span class="font-bold"> {{ watherData.current.temp_c }} Deg Celcius</span>
+  </h2>
+  <h2>
+    Temperature:
+    <span class="font-bold"> {{ watherData.current.temp_f }} F</span>
+  </h2>
+
+  <h2
+    appTooltip="This is conition of the city."
+    appHighlight="#cddc39"
+    class="text-3xl font-semibold"
+  >
+    Condition: {{ watherData.current.condition.text | uppercase }}
+  </h2>
+</div>

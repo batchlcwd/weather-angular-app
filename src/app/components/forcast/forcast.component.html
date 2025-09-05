@@ -1,0 +1,14 @@
+<div class="text-center">
+  <h1>Example of pipes</h1>
+
+  <p>Date : {{ today | date : "dd-MM-yyyy hh:mm:ss" }}</p>
+  <p>Company Name : {{ companyName | uppercase }}</p>
+  <p>Company Name : {{ companyName | lowercase }}</p>
+  <p>Company Name : {{ companyName | titlecase }}</p>
+  <p>Price : {{ price | currency : "USD" }}</p>
+  <p>Percentage : {{ 0.25 | percent }}</p>
+  <p>Shashi detail : {{ obj | json }}</p>
+  <p>BrandName : {{ companyName | slice : 0 : 9 }}</p>
+
+  <p>Credit Card Number: {{ cardNumber | maskText : 2 }}</p>
+</div>
